@@ -5,20 +5,7 @@ angular.module('consultCalc', [])
 
         consult.test = "";
 
-        consult.itemRows = [
-            {
-                amount: '',
-                quantity: ''
-            },
-            {
-                amount: '',
-                quantity: ''
-            },
-            {
-                amount: '',
-                quantity: ''
-            }
-        ];
+        consult.itemRows = []
 
         consult.addItemRow = function () {
             consult.itemRows.push({
@@ -26,4 +13,13 @@ angular.module('consultCalc', [])
                 quantity: ''
             })
         };
+
+        var init = function () {
+            for (var i = 0; i < 3; i++) {
+                consult.addItemRow();
+            };
+        };
+
+        init();
+
     });
