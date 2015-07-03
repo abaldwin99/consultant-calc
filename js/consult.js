@@ -1,11 +1,9 @@
 angular.module('consultCalc', [])
     .controller('ConsultCalcController', function () {
 
-        var consult = this;
-
         this.test = "";
 
-        consult.itemRows = [
+        this.itemRows = [
             {
                 amount: '',
                 quantity: ''
@@ -19,6 +17,8 @@ angular.module('consultCalc', [])
                 quantity: ''
             }
         ];
+
+
 
 
 
