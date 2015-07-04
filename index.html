@@ -86,10 +86,10 @@
                         <div ng-repeat="itemRow in consult.itemRows">
                             <div class="row text-input-spacer">
                                 <div class="col-xs-6">
-                                    <input type="email" class="form-control" placeholder="Amount" ng-model="itemRow.amount">
+                                    <input type="number" class="form-control" placeholder="Amount" ng-model="itemRow.amount" ng-change="consult.calcFields()">
                                 </div>
                                 <div class="col-xs-6">
-                                    <input type="email" class="form-control" placeholder="Quantity" ng-model="itemRow.quantity">
+                                    <input type="decimal" class="form-control" placeholder="Quantity" ng-model="itemRow.quantity" ng-change="consult.calcFields()">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label for="discountRate">Discount (%)</label>
-                                <input ng-model="consult.test" type="number" step=".01" min="0" class="form-control numbersOnly computeNumbers" placeholder="0.00">
+                                <input ng-model="consult.discount" type="number" step=".01" min="0" max="100" class="form-control" placeholder="0.00" ng-change="consult.calcFields()">
                             </div>
                         </div>
 
@@ -117,9 +117,9 @@
 
 
                         <div class="row">
-                            <div class="col-xs-12 text-right">
+                            <div class="col-xs-12 text-center">
                                 <label for="subTotal">Product Subtotal</label>
-                                <p class="text-success">{{consult.test}}</p>
+                                <p class="text-success">{{consult.productSubTotal | currency:"USD$"}}</p>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
 
 
                         <div class="row">
-                            <div class="col-xs-12 text-right">
+                            <div class="col-xs-12 text-center">
                                 <label for="subTotal">Shipping Subtotal</label>
                                 <p class="text-success">$1.00</p>
 
@@ -181,7 +181,7 @@
 
 
                         <div class="row">
-                            <div class="col-xs-12 text-right">
+                            <div class="col-xs-12 text-center">
                                 <label for="subTotal">Tax Subtotal</label>
                                 <p class="text-success">$1.00</p>
                             </div>
