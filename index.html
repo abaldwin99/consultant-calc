@@ -160,7 +160,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label for="subTotal">Tax Rate (%)</label>
-                                <input type="number" step=".01" min="0" class="form-control" placeholder="0.00" disabled="">
+                                <input type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.taxRate">
                             </div>
                         </div>
                         </br>
@@ -170,7 +170,7 @@
 
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Tax Shipping
+                                        <input type="checkbox" ng-model="consult.taxShipping" ng-change="consult.calcFields()"> Tax Shipping
                                     </label>
                                 </div>
                             </div>
@@ -183,17 +183,17 @@
                         <div class="row">
                             <div class="col-xs-12 text-center">
                                 <label for="subTotal">Tax Subtotal</label>
-                                <p class="text-success">$1.00</p>
+                                <p class="text-success">{{consult.taxSubTotal | currency:"$"}}</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Taxes   -->
+                    <!-- Grand Total   -->
                     <div class="jumbotron">
                         <div class="row text-center">
                             <div class="col-xs-12">
                                 <h2>Grand Total</h2>
-                                <h1 class="grand-total-text">$100.00</h1>
+                                <h1 class="grand-total-text">{{consult.grandTotal | currency:"$"}}</h1>
                             </div>
                         </div>
                         </br>
