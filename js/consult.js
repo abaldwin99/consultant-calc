@@ -26,8 +26,15 @@ angular.module('consultCalc', [])
             consult.productSubTotal = productSubTotal;
         };
 
+        consult.calcShippingSubTotal = function () {
+            var shippingRate = (consult.shippingRate ? consult.shippingRate / 100 : 0);
+            var handlingRate = consult.handlingRate ? consult.handlingRate : 0
+            consult.shippingSubTotal = (consult.productSubTotal * shippingRate) + handlingRate
+        };
+
         consult.calcFields = function () {
             consult.calcProductSubTotal()
+            consult.calcShippingSubTotal()
         };
 
 
@@ -36,6 +43,7 @@ angular.module('consultCalc', [])
             for (var i = 0; i < 3; i++) {
                 consult.addItemRow();
             };
+            consult.calcFields();
         };
 
         init();
