@@ -53,8 +53,6 @@ angular.module('consultCalc', []).controller('ConsultCalcController', function (
         consult.calcGrandTotal();
     };
 
-
-
     var init = function () {
         for (var i = 0; i < 3; i++) {
             consult.addItemRow();
