@@ -72,3 +72,8 @@ app.controller('ConsultCalcController', function ($scope) {
 
     init();
 });
+
+
+app.controller('Navigation', function ($scope) {
+
+});
