@@ -10,6 +10,8 @@ app.controller('ConsultCalcController', function ($scope) {
 
     consult.itemRows = [];
 
+    consult.page = 'main';
+
     consult.addItemRow = function () {
         consult.itemRows.push({
             amount: null,
@@ -71,9 +73,9 @@ app.controller('ConsultCalcController', function ($scope) {
     };
 
     init();
-});
 
-
-app.controller('Navigation', function ($scope) {
+    consult.loadPage = function (page) {
+        consult.page = page;
+    };
 
 });

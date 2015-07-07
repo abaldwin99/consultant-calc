@@ -57,17 +57,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Consultant Calculator</a>
+                    <a class="navbar-brand" ng-click="consult.loadPage('main')" href="#">Consultant Calculator</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">Home</a>
+                        <li ng-class="{ active:consult.page==='main' }">
+                            <a href="#" ng-click="consult.loadPage('main')">Home</a>
                         </li>
-                        <li>
-                            <a ng-click="loadpage('About')">About</a>
+                        <li ng-class="{ active:consult.page==='about' }">
+                            <a href="#" ng-click="consult.loadPage('about')">About</a>
                         </li>
                     </ul>
                 </div>
@@ -77,141 +77,148 @@
             <!-- /.container -->
         </nav>
 
-        <!--Main-->
+
+
         <div class="container">
             <div class="row row-centered">
                 <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6  col-centered">
 
+                    <!--Main-->
+                    <div ng-show="consult.page==='main'">
+                        <!-- Items and Quantites -->
+                        <div class="jumbotron">
 
-                    <!-- Items and Quantites -->
-                    <div class="jumbotron">
-
-                        <div class="row text-input-spacer">
-                            <div class="col-xs-6">
-                                <label>Amount</label>
-                            </div>
-                            <div class="col-xs-6">
-                                <label>Quantity</label>
-                            </div>
-                        </div>
-
-                        <div ng-repeat="itemRow in consult.itemRows">
                             <div class="row text-input-spacer">
                                 <div class="col-xs-6">
-                                    <input type="decimal" class="form-control" placeholder="0.00" ng-model="itemRow.amount" ng-change="consult.calcFields()">
+                                    <label>Amount</label>
                                 </div>
                                 <div class="col-xs-6">
-                                    <input type="number" class="form-control" placeholder="0" ng-model="itemRow.quantity" ng-change="consult.calcFields()">
+                                    <label>Quantity</label>
+                                </div>
+                            </div>
+
+                            <div ng-repeat="itemRow in consult.itemRows">
+                                <div class="row text-input-spacer">
+                                    <div class="col-xs-6">
+                                        <input type="decimal" class="form-control" placeholder="0.00" ng-model="itemRow.amount" ng-change="consult.calcFields()">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input type="number" class="form-control" placeholder="0" ng-model="itemRow.quantity" ng-change="consult.calcFields()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-3 col-xs-offset-9">
+                                    <a class="btn btn-success pull-right" ng-click="consult.addItemRow()">
+                                        <span class="glyphicon glyphicon-plus"></span> Line
+                                    </a>
+                                </div>
+                            </div>
+
+                            </br>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label for="discount-rate">Discount (%)</label>
+                                    <input id="discount-rate" ng-model="consult.discount" type="number" step=".01" min="0" max="100" class="form-control" placeholder="0.00" ng-change="consult.calcFields()">
+                                </div>
+                            </div>
+
+                            </br>
+                            </br>
+                            </br>
+
+
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <label>Product Subtotal</label>
+                                    <p class="text-success">{{consult.productSubTotal | currency:"$"}}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-3 col-xs-offset-9">
-                                <a class="btn btn-success pull-right" ng-click="consult.addItemRow()">
-                                    <span class="glyphicon glyphicon-plus"></span> Line
-                                </a>
+
+                        <!-- Shipping   -->
+                        <div class="jumbotron">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label for="shipping-rate">Shipping Rate (%)</label>
+                                    <input type="number" id="shipping-rate" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.shippingRate">
+                                </div>
                             </div>
-                        </div>
+                            </br>
 
-                        </br>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="discount-rate">Discount (%)</label>
-                                <input id="discount-rate" ng-model="consult.discount" type="number" step=".01" min="0" max="100" class="form-control" placeholder="0.00" ng-change="consult.calcFields()">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label for="handling-rate">Handling Rate (Flat)</label>
+                                    <input id="handling-rate" type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.handlingRate">
+                                </div>
                             </div>
-                        </div>
-
-                        </br>
-                        </br>
-                        </br>
+                            </br>
+                            </br>
+                            </br>
 
 
-                        <div class="row">
-                            <div class="col-xs-12 text-center">
-                                <label>Product Subtotal</label>
-                                <p class="text-success">{{consult.productSubTotal | currency:"$"}}</p>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <label>Shipping Sub Total</label>
+                                    <p class="text-success">{{consult.shippingSubTotal | currency:"$"}}</p>
 
-
-                    <!-- Shipping   -->
-                    <div class="jumbotron">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="shipping-rate">Shipping Rate (%)</label>
-                                <input type="number" id="shipping-rate" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.shippingRate">
-                            </div>
-                        </div>
-                        </br>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="handling-rate">Handling Rate (Flat)</label>
-                                <input id="handling-rate" type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.handlingRate">
-                            </div>
-                        </div>
-                        </br>
-                        </br>
-                        </br>
-
-
-                        <div class="row">
-                            <div class="col-xs-12 text-center">
-                                <label>Shipping Sub Total</label>
-                                <p class="text-success">{{consult.shippingSubTotal | currency:"$"}}</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Taxes   -->
-                    <div class="jumbotron">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="tax-rate">Tax Rate (%)</label>
-                                <input id="tax-rate" type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.taxRate">
-                            </div>
-                        </div>
-                        </br>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" ng-model="consult.taxShipping" ng-change="consult.calcFields()"> Tax Shipping
-                                    </label>
                                 </div>
                             </div>
                         </div>
-                        </br>
-                        </br>
-                        </br>
+
+                        <!-- Taxes   -->
+                        <div class="jumbotron">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label for="tax-rate">Tax Rate (%)</label>
+                                    <input id="tax-rate" type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.taxRate">
+                                </div>
+                            </div>
+                            </br>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="consult.taxShipping" ng-change="consult.calcFields()"> Tax Shipping
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+                            </br>
+                            </br>
 
 
-                        <div class="row">
-                            <div class="col-xs-12 text-center">
-                                <label>Tax Subtotal</label>
-                                <p class="text-success">{{consult.taxSubTotal | currency:"$"}}</p>
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <label>Tax Subtotal</label>
+                                    <p class="text-success">{{consult.taxSubTotal | currency:"$"}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Grand Total   -->
-                    <div class="jumbotron">
-                        <div class="row text-center">
-                            <div class="col-xs-12">
-                                <h2>Grand Total</h2>
-                                <h1 class="grand-total-text">{{consult.grandTotal | currency:"$"}}</h1>
+                        <!-- Grand Total   -->
+                        <div class="jumbotron">
+                            <div class="row text-center">
+                                <div class="col-xs-12">
+                                    <h2>Grand Total</h2>
+                                    <h1 class="grand-total-text">{{consult.grandTotal | currency:"$"}}</h1>
+                                </div>
                             </div>
+                            </br>
                         </div>
-                        </br>
+
                     </div>
 
-
+                    <!-- About   -->
+                    <div class="jumbotron" ng-show="consult.page==='about'">
+                        <h1>About my site</h1>
+                    </div>
 
 
                 </div>
@@ -219,6 +226,9 @@
 
 
         </div>
+
+
+
 
 
         <!-- jQuery Version 1.11.1 -->
