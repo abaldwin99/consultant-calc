@@ -43,6 +43,7 @@ app.controller('ConsultCalcController', function ($scope) {
         var shippingRate = replaceNull(consult.shippingRate / 100);
         var handlingRate = replaceNull(consult.handlingRate);
         consult.shippingSubTotal = (consult.productSubTotal * shippingRate) + handlingRate;
+        consult.shippingProductSubTotal = consult.shippingSubTotal + consult.productSubTotal;
     };
 
     consult.calcTaxSubTotal = function () {

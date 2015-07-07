@@ -100,7 +100,7 @@
                             <div ng-repeat="itemRow in consult.itemRows">
                                 <div class="row text-input-spacer">
                                     <div class="col-xs-6">
-                                        <input type="decimal" class="form-control" placeholder="0.00" ng-model="itemRow.amount" ng-change="consult.calcFields()">
+                                        <input type="number" step=".01" class="form-control" placeholder="0.00" ng-model="itemRow.amount" ng-change="consult.calcFields()">
                                     </div>
                                     <div class="col-xs-6">
                                         <input type="number" class="form-control" placeholder="0" ng-model="itemRow.quantity" ng-change="consult.calcFields()">
@@ -132,7 +132,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <label>Product Subtotal</label>
+                                    <label>Product Sub Total</label>
                                     <p class="text-success">{{consult.productSubTotal | currency:"$"}}</p>
                                 </div>
                             </div>
@@ -162,9 +162,10 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <label>Shipping Sub Total</label>
+                                    <label>Shipping</label>
                                     <p class="text-success">{{consult.shippingSubTotal | currency:"$"}}</p>
-
+                                    <label>Shipping + Product Sub Total</label>
+                                    <p class="text-success">{{consult.shippingProductSubTotal | currency:"$"}}</p>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +197,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <label>Tax Subtotal</label>
+                                    <label>Tax Sub Total</label>
                                     <p class="text-success">{{consult.taxSubTotal | currency:"$"}}</p>
                                 </div>
                             </div>
@@ -217,7 +218,11 @@
 
                     <!-- About   -->
                     <div class="jumbotron" ng-show="consult.page==='about'">
-                        <h1>About my site</h1>
+                        <div class="row text-center">
+                            <div class="col-xs-12">
+                                <p>A simple calculator to help you!</p>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -240,6 +245,8 @@
         <!-- Material Design for Bootstrap -->
         <script src="dist/js/material.min.js "></script>
         <script src="dist/js/ripples.min.js "></script>
+        <script src="js/consult-input.js"></script>
+
         <script>
             $.material.init();
         </script>

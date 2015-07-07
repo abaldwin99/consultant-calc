@@ -21,3 +21,7 @@
 .jumbotron .grand-total-text {
     color: rgb(76, 175, 80);
 }
+
+.ng-invalid {
+    color: red;
+}
