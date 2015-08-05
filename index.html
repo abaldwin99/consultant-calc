@@ -85,7 +85,7 @@
                         <!-- Items and Quantites -->
                         <div class="jumbotron">
 
-                            <div class="row text-input-spacer">
+                            <div class="row text-input-spacer-small">
                                 <div class="col-xs-6">
                                     <label>Amount</label>
                                 </div>
@@ -95,7 +95,7 @@
                             </div>
 
                             <div ng-repeat="itemRow in consult.itemRows">
-                                <div class="row text-input-spacer">
+                                <div class="row text-input-spacer-small">
                                     <div class="col-xs-6">
                                         <input type="number" step=".01" class="form-control" placeholder="0.00" ng-model="itemRow.amount" ng-change="consult.calcFields()">
                                     </div>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row text-input-spacer-small">
                                 <div class="col-xs-3 col-xs-offset-9">
                                     <a class="btn btn-success pull-right" ng-click="consult.addItemRow()">
                                         <span class="glyphicon glyphicon-plus"></span> Line
@@ -113,18 +113,12 @@
                                 </div>
                             </div>
 
-                            </br>
-
-                            <div class="row">
+                            <div class="row text-input-spacer-large">
                                 <div class="col-xs-12">
                                     <label for="discount-rate">Discount (%)</label>
                                     <input id="discount-rate" ng-model="consult.discount" type="number" step=".01" min="0" max="100" class="form-control" placeholder="0.00" ng-change="consult.calcFields()">
                                 </div>
                             </div>
-
-                            </br>
-                            </br>
-                            </br>
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
@@ -137,24 +131,19 @@
 
                         <!-- Shipping   -->
                         <div class="jumbotron">
-                            <div class="row">
+                            <div class="row text-input-spacer-small">
                                 <div class="col-xs-12">
                                     <label for="shipping-rate">Shipping Rate (%)</label>
                                     <input type="number" id="shipping-rate" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.shippingRate">
                                 </div>
                             </div>
-                            </br>
 
-                            <div class="row">
+                            <div class="row text-input-spacer-large">
                                 <div class="col-xs-12">
                                     <label for="handling-rate">Handling Rate (Flat)</label>
                                     <input id="handling-rate" type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.handlingRate">
                                 </div>
                             </div>
-
-                            </br>
-                            </br>
-                            </br>
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
@@ -168,15 +157,14 @@
 
                         <!-- Taxes   -->
                         <div class="jumbotron">
-                            <div class="row">
+                            <div class="row text-input-spacer-small">
                                 <div class="col-xs-12">
                                     <label for="tax-rate">Tax Rate (%)</label>
                                     <input id="tax-rate" type="number" step=".01" min="0" class="form-control" placeholder="0.00" ng-change="consult.calcFields()" ng-model="consult.taxRate">
                                 </div>
                             </div>
-                            </br>
 
-                            <div class="row">
+                            <div class="row text-input-spacer-large">
                                 <div class="col-xs-12">
 
                                     <div class="checkbox">
@@ -186,9 +174,6 @@
                                     </div>
                                 </div>
                             </div>
-                            </br>
-                            </br>
-                            </br>
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
@@ -200,13 +185,12 @@
 
                         <!-- Grand Total   -->
                         <div class="jumbotron">
-                            <div class="row text-center">
+                            <div class="row text-center text-input-spacer-small">
                                 <div class="col-xs-12">
                                     <h2>Grand Total</h2>
                                     <h1 class="grand-total-text">{{consult.grandTotal | currency:"$"}}</h1>
                                 </div>
                             </div>
-                            </br>
                         </div>
 
                     </div>

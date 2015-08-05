@@ -13,8 +13,12 @@
     margin-right: -4px;
 }
 
-.text-input-spacer {
+.text-input-spacer-small {
     margin-bottom: 15px;
+}
+
+.text-input-spacer-large {
+    margin-bottom: 45px;
 }
 
 .jumbotron .h1,
