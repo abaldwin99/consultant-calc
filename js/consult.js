@@ -1,6 +1,6 @@
 var app = angular.module('consultCalc', []);
 
-app.controller('ConsultCalcController', function ($scope) {
+app.controller('ConsultCalcController', ['$scope', function ($scope) {
 
     'use strict';
 
@@ -79,4 +79,4 @@ app.controller('ConsultCalcController', function ($scope) {
         consult.page = page;
     };
 
-});
+}]);
