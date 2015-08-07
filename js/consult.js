@@ -3,13 +3,9 @@ var app = angular.module('consultCalc', []);
 app.controller('ConsultCalcController', ['$scope', function ($scope) {
 
     'use strict';
-
     var consult = this;
 
-    consult.test = "";
-
     consult.itemRows = [];
-
     consult.page = 'main';
 
     consult.addItemRow = function () {
@@ -32,7 +28,6 @@ app.controller('ConsultCalcController', ['$scope', function ($scope) {
             rowTotal = consult.itemRows[i].amount * consult.itemRows[i].quantity;
             productSubTotal += replaceNull(rowTotal);
         }
-        //        var discount = (consult.discount ? 1 - consult.discount / 100 : 1);
         var discount = 1 - consult.discount / 100;
         discount = replaceNull(discount, 1);
         productSubTotal = productSubTotal * discount;
