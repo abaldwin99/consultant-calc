@@ -29,3 +29,7 @@
 .ng-invalid {
     color: #f44336;
 }
+
+body {
+    padding-top: 70px;
+}
