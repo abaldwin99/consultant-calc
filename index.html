@@ -35,30 +35,27 @@
 <body ng-app="consultCalc">
     <div ng-controller="ConsultCalcController as consult">
 
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" ng-click="consult.loadPage('main')" href="#">Consultant Calculator</a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li ng-class="{ active:consult.page==='main' }">
-                            <a href="#" ng-click="consult.loadPage('main')">Home</a>
-                        </li>
-                        <li ng-class="{ active:consult.page==='about' }">
-                            <a href="#" ng-click="consult.loadPage('about')">About</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-click="consult.loadPage('main')" href="#">Consultant Calculator</a>
             </div>
-        </nav>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{ active:consult.page==='main' }">
+                        <a href="#" ng-click="consult.loadPage('main')">Home</a>
+                    </li>
+                    <li ng-class="{ active:consult.page==='about' }">
+                        <a href="#" ng-click="consult.loadPage('about')">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
 
         <div class="container">
             <div class="row row-centered">
