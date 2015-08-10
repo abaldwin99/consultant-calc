@@ -10,5 +10,7 @@ $(document).ready(function () {
     $('div').on('blur', 'input[type=number]', function (e) {
         $(this).off('mousewheel.disableScroll')
     })
-
+    $(".navbar-nav li a").click(function (event) {
+        $(".navbar-collapse").collapse('hide');
+    });
 });
