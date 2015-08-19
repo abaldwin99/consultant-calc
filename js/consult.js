@@ -20,6 +20,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         redirectTo: '/'
     })
 
+
+    // works with arrive js to initialize material design components on loaded template
+    $.material.init();
+
 }]);
 
 
