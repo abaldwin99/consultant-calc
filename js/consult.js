@@ -1,12 +1,34 @@
-var app = angular.module('consultCalc', []);
+var app = angular.module('consultCalc', ['ngRoute']);
 
-app.controller('ConsultCalcController', ['$scope', function ($scope) {
+
+app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+
+        .when('/', {
+        templateUrl: 'pages/home.html',
+        controller: 'ConsultCalcController',
+        controllerAs: 'consult'
+    })
+
+    .when('/about', {
+        templateUrl: 'pages/about.html',
+        controller: 'ConsultCalcController',
+        controllerAs: 'consult'
+    })
+
+    .otherwise({
+        redirectTo: '/'
+    })
+
+}]);
+
+
+app.controller('ConsultCalcController', ['$scope', '$location', function ($scope, $location) {
 
     'use strict';
     var consult = this;
 
     consult.itemRows = [];
-    consult.page = 'main';
 
     consult.addItemRow = function () {
         consult.itemRows.push({
@@ -61,6 +83,10 @@ app.controller('ConsultCalcController', ['$scope', function ($scope) {
         consult.calcGrandTotal();
     };
 
+    $scope.isActive = function (route) {
+        return route === $location.path();
+    }
+
     var init = function () {
         for (var i = 0; i < 3; i++) {
             consult.addItemRow();
@@ -69,9 +95,5 @@ app.controller('ConsultCalcController', ['$scope', function ($scope) {
     };
 
     init();
-
-    consult.loadPage = function (page) {
-        consult.page = page;
-    };
 
 }]);
