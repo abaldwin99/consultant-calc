@@ -1,0 +1,31 @@
+{
+  "name": "consultant-calc",
+  "version": "1.0.0",
+  "homepage": "https://github.com/abaldwin99/consultant-calc",
+  "authors": [
+    "Alex Baldwin <abaldwintech@gmail.com>"
+  ],
+  "description": "A web app that streamlines order calculations for sales consultants",
+  "main": "index.html",
+  "keywords": [
+    "consultant",
+    "calculator",
+    "demo",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-material-design": "~0.3.0",
+    "arrive": "~2.2.0",
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.4",
+    "angular-route": "~1.4.4"
+  }
+}
