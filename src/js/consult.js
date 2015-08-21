@@ -18,7 +18,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
     .otherwise({
         redirectTo: '/'
-    })
+    });
 
 
     // works with arrive js to initialize material design components on loaded template
@@ -45,7 +45,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', function ($scope
     function replaceNull(value, replacement) {
         replacement = typeof replacement !== 'undefined' ? replacement : 0;
         return value ? value : replacement;
-    };
+    }
 
     consult.calcProductSubTotal = function () {
         var productSubTotal = 0,
@@ -89,7 +89,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', function ($scope
 
     $scope.isActive = function (route) {
         return route === $location.path();
-    }
+    };
 
     var init = function () {
         for (var i = 0; i < 3; i++) {
