@@ -2,7 +2,7 @@
 <div class="jumbotron">
     <div class="row text-center">
         <div class="col-xs-12">
-            <p>Change the calculators default entries</p>
+            <p>Change the default entries in the calculator</p>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row text-input-spacer-large">
         <div class="col-xs-12">
             <div class="checkbox">
                 <label>
@@ -43,4 +43,13 @@
             </div>
         </div>
     </div>
+
+    <div class="row text-input-spacer-small">
+        <div class="col-xs-3 col-xs-offset-9">
+            <a class="btn btn-danger pull-right" ng-click="consult.resetSettings()">
+                Reset
+            </a>
+        </div>
+    </div>
+
 </div>

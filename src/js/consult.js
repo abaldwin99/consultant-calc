@@ -113,6 +113,17 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         localStorageService.set('settingTaxShipping', consult.settingTaxShipping);
     };
 
+    consult.resetSettings = function () {
+        if (confirm('Are you sure you want to reset the settings?')) {
+            localStorageService.set('settingDiscount', 0);
+            localStorageService.set('settingShippingRate', 0);
+            localStorageService.set('settingHandlingRate', 0);
+            localStorageService.set('settingTaxRate', 0);
+            localStorageService.set('settingTaxShipping', false);
+            init();
+        }
+    };
+
     var init = function () {
         // Fill the line items with 3 rows to start
         for (var i = 0; i < 3; i++) {
