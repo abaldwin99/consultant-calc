@@ -16,6 +16,12 @@ app.config(['$routeProvider', function ($routeProvider) {
         controllerAs: 'consult'
     })
 
+    .when('/settings', {
+        templateUrl: 'pages/settings.html',
+        controller: 'ConsultCalcController',
+        controllerAs: 'consult'
+    })
+
     .otherwise({
         redirectTo: '/'
     });
@@ -27,15 +33,15 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 // Local Storage Setup
-app.config(function (localStorageServiceProvider) {
-  localStorageServiceProvider
-    .setPrefix('consultCalc')
-    .setStorageCookie(0, '/')
-    .setStorageCookieDomain('');
-});
+app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+    localStorageServiceProvider
+        .setPrefix('consultCalc')
+        .setStorageCookie(0, '/')
+        .setStorageCookieDomain('');
+}]);
 
 
-app.controller('ConsultCalcController', ['$scope', '$location', function ($scope, $location) {
+app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageService', function ($scope, $location, localStorageService) {
 
     'use strict';
     var consult = this;
@@ -99,10 +105,27 @@ app.controller('ConsultCalcController', ['$scope', '$location', function ($scope
         return route === $location.path();
     };
 
+    consult.saveSettings = function () {
+        localStorageService.set('settingDiscount', consult.settingDiscount);
+        localStorageService.set('settingShippingRate', consult.settingShippingRate);
+        localStorageService.set('settingHandlingRate', consult.settingHandlingRate);
+        localStorageService.set('settingTaxRate', consult.settingTaxRate);
+        localStorageService.set('settingTaxShipping', consult.settingTaxShipping);
+    };
+
     var init = function () {
+        // Fill the line items with 3 rows to start
         for (var i = 0; i < 3; i++) {
             consult.addItemRow();
         }
+
+        // Load user's default settings into main calculator and settings page
+        consult.discount = consult.settingDiscount = localStorageService.get('settingDiscount');
+        consult.shippingRate = consult.settingShippingRate = localStorageService.get('settingShippingRate');
+        consult.handlingRate = consult.settingHandlingRate = localStorageService.get('settingHandlingRate');
+        consult.taxRate = consult.settingTaxRate = localStorageService.get('settingTaxRate');
+        consult.taxShipping = consult.settingTaxShipping = localStorageService.get('settingTaxShipping');
+
         consult.calcFields();
     };
 
