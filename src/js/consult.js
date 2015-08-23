@@ -1,6 +1,6 @@
-var app = angular.module('consultCalc', ['ngRoute']);
+var app = angular.module('consultCalc', ['ngRoute', 'LocalStorageModule']);
 
-
+// Routing setup
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
 
@@ -25,6 +25,14 @@ app.config(['$routeProvider', function ($routeProvider) {
     $.material.init();
 
 }]);
+
+// Local Storage Setup
+app.config(function (localStorageServiceProvider) {
+  localStorageServiceProvider
+    .setPrefix('consultCalc')
+    .setStorageCookie(0, '/')
+    .setStorageCookieDomain('');
+});
 
 
 app.controller('ConsultCalcController', ['$scope', '$location', function ($scope, $location) {
