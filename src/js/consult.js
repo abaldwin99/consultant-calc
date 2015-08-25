@@ -106,19 +106,19 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
     };
 
     consult.saveSettings = function () {
-        localStorageService.set('settingDiscount', consult.settingDiscount);
-        localStorageService.set('settingShippingRate', consult.settingShippingRate);
-        localStorageService.set('settingHandlingRate', consult.settingHandlingRate);
-        localStorageService.set('settingTaxRate', consult.settingTaxRate);
+        localStorageService.set('settingDiscount', zeroToNull(consult.settingDiscount));
+        localStorageService.set('settingShippingRate', zeroToNull(consult.settingShippingRate));
+        localStorageService.set('settingHandlingRate', zeroToNull(consult.settingHandlingRate));
+        localStorageService.set('settingTaxRate', zeroToNull(consult.settingTaxRate));
         localStorageService.set('settingTaxShipping', consult.settingTaxShipping);
     };
 
     consult.resetSettings = function () {
         if (confirm('Are you sure you want to reset the settings?')) {
-            localStorageService.set('settingDiscount', 0);
-            localStorageService.set('settingShippingRate', 0);
-            localStorageService.set('settingHandlingRate', 0);
-            localStorageService.set('settingTaxRate', 0);
+            localStorageService.set('settingDiscount', null);
+            localStorageService.set('settingShippingRate', null);
+            localStorageService.set('settingHandlingRate', null);
+            localStorageService.set('settingTaxRate', null);
             localStorageService.set('settingTaxShipping', false);
             init();
         }
@@ -143,3 +143,11 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
     init();
 
 }]);
+
+// Helper Functions
+function zeroToNull(n) {
+    if (n === 0) {
+        return null;
+    }
+    return n;
+}
