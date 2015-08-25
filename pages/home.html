@@ -100,10 +100,19 @@
 
 <!-- Grand Total   -->
 <div class="jumbotron">
-    <div class="row text-center text-input-spacer-small">
+    <div class="row text-center text-input-spacer-large">
         <div class="col-xs-12">
             <h2>Grand Total</h2>
             <h1 class="grand-total-text">{{consult.grandTotal | currency:"$"}}</h1>
         </div>
     </div>
+
+    <div class="row text-input-spacer-small">
+        <div class="col-xs-3 col-xs-offset-9">
+            <a class="btn btn-danger pull-right" ng-click="consult.resetForm()">
+                Reset
+            </a>
+        </div>
+    </div>
+
 </div>

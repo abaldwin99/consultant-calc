@@ -105,6 +105,12 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         return route === $location.path();
     };
 
+    consult.resetForm = function () {
+        if (confirm('Reset this form?')) {
+            window.location.reload();
+        }
+    };
+
     consult.saveSettings = function () {
         localStorageService.set('settingDiscount', zeroToNull(consult.settingDiscount));
         localStorageService.set('settingShippingRate', zeroToNull(consult.settingShippingRate));
@@ -114,7 +120,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
     };
 
     consult.resetSettings = function () {
-        if (confirm('Are you sure you want to reset the settings?')) {
+        if (confirm('Are you sure you want to change settings to the default?')) {
             localStorageService.set('settingDiscount', null);
             localStorageService.set('settingShippingRate', null);
             localStorageService.set('settingHandlingRate', null);
