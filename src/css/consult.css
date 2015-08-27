@@ -30,6 +30,7 @@
     color: #f44336;
 }
 
+/* http://stackoverflow.com/questions/13119906/turning-off-twitter-bootstrap-navbar-transition-animation */
 .no-transition {
   -webkit-transition: height 0.01s;
   -moz-transition: height 0.01s;
