@@ -10,9 +10,9 @@
     <access origin="*" />
 
     <!-- Application icon -->
-    <icon src="src/icon.png" />
-    <icon src="src/icon.png" platform="android" density="ldpi" />
-    <icon src="src/icon.png" platform="android" density="mdpi" />
-    <icon src="src/icon.png" platform="android" density="hdpi" />
-    <icon src="src/icon.png" platform="android" density="xhdpi" />
+    <icon src="img/icon.png" />
+    <icon src="img/icon.png" platform="android" density="ldpi" />
+    <icon src="img/icon.png" platform="android" density="mdpi" />
+    <icon src="img/icon.png" platform="android" density="hdpi" />
+    <icon src="img/icon.png" platform="android" density="xhdpi" />
 </widget>
