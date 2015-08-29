@@ -108,7 +108,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
 
     consult.resetForm = function () {
         if (confirm('Reset this form?')) {
-            window.location.reload();
+            init();
         }
     };
 
@@ -132,6 +132,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
     };
 
     var init = function () {
+        consult.itemRows = [];
         // Fill the line items with 3 rows to start
         for (var i = 0; i < 3; i++) {
             consult.addItemRow();
