@@ -71,13 +71,13 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         var discount = 1 - consult.discount / 100;
         discount = replaceNull(discount, 1);
         productSubTotal = productSubTotal * discount;
-        consult.productSubTotal = productSubTotal;
+        consult.productSubTotal = Math.round10(productSubTotal);
     };
 
     consult.calcShippingSubTotal = function () {
         var shippingRate = replaceNull(consult.shippingRate / 100);
         var handlingRate = replaceNull(consult.handlingRate);
-        consult.shippingSubTotal = (consult.productSubTotal * shippingRate) + handlingRate;
+        consult.shippingSubTotal = Math.round10(consult.productSubTotal * shippingRate + handlingRate);
         consult.shippingProductSubTotal = consult.shippingSubTotal + consult.productSubTotal;
     };
 
@@ -88,6 +88,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         } else {
             consult.taxSubTotal = consult.productSubTotal * taxRate;
         }
+        consult.taxSubTotal = Math.round10(consult.taxSubTotal)
     };
 
     consult.calcGrandTotal = function () {
@@ -157,3 +158,41 @@ function zeroToNull(n) {
     }
     return n;
 }
+
+//  A rounding function that eliminates edge cases with floating point numbers
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+(function() {
+  /**
+   * Decimal adjustment of a number.
+   *
+   * @param {String}  type  The type of adjustment.
+   * @param {Number}  value The number.
+   * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
+   * @returns {Number} The adjusted value.
+   */
+  function decimalAdjust(type, value, exp) {
+    // If the exp is undefined or zero...
+    if (typeof exp === 'undefined' || +exp === 0) {
+      return Math[type](value);
+    }
+    value = +value;
+    exp = +exp;
+    // If the value is not a number or the exp is not an integer...
+    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+      return NaN;
+    }
+    // Shift
+    value = value.toString().split('e');
+    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+    // Shift back
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+  }
+
+  // Decimal round
+  if (!Math.round10) {
+    Math.round10 = function(value, exp) {
+      return decimalAdjust('round', value, exp);
+    };
+  }
+})();
