@@ -1,0 +1,18 @@
+<widget id="ConsultantCalc" version="0.0.1">
+    <name>Consultant Calc</name>
+    <description>
+        This app has everything a direct sales consultant needs to fill out a sales order form.
+    </description>
+    <author email="abaldwintech@gmail.com">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+
+    <!-- Application icon -->
+    <icon src="src/icon.png" />
+    <icon src="src/icon.png" platform="android" density="ldpi" />
+    <icon src="src/icon.png" platform="android" density="mdpi" />
+    <icon src="src/icon.png" platform="android" density="hdpi" />
+    <icon src="src/icon.png" platform="android" density="xhdpi" />
+</widget>
