@@ -71,13 +71,13 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         var discount = 1 - consult.discount / 100;
         discount = replaceNull(discount, 1);
         productSubTotal = productSubTotal * discount;
-        consult.productSubTotal = Math.round10(productSubTotal);
+        consult.productSubTotal = Math.round10(productSubTotal, -2);
     };
 
     consult.calcShippingSubTotal = function () {
         var shippingRate = replaceNull(consult.shippingRate / 100);
         var handlingRate = replaceNull(consult.handlingRate);
-        consult.shippingSubTotal = Math.round10(consult.productSubTotal * shippingRate + handlingRate);
+        consult.shippingSubTotal = Math.round10(consult.productSubTotal * shippingRate + handlingRate, -2);
         consult.shippingProductSubTotal = consult.shippingSubTotal + consult.productSubTotal;
     };
 
@@ -88,7 +88,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         } else {
             consult.taxSubTotal = consult.productSubTotal * taxRate;
         }
-        consult.taxSubTotal = Math.round10(consult.taxSubTotal)
+        consult.taxSubTotal = Math.round10(consult.taxSubTotal, -2);
     };
 
     consult.calcGrandTotal = function () {
