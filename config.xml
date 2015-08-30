@@ -15,4 +15,9 @@
     <icon src="img/icon.png" platform="android" density="mdpi" />
     <icon src="img/icon.png" platform="android" density="hdpi" />
     <icon src="img/icon.png" platform="android" density="xhdpi" />
+
+    <preference name="permissions" value="none" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 </widget>
