@@ -65,7 +65,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         var productSubTotal = 0,
             rowTotal;
         for (var i = 0; i < consult.itemRows.length; i++) {
-            rowTotal = consult.itemRows[i].amount * consult.itemRows[i].quantity;
+            rowTotal = consult.itemRows[i].amount * (consult.itemRows[i].quantity ? consult.itemRows[i].quantity : 1);
             productSubTotal += replaceNull(rowTotal);
         }
         var discount = 1 - consult.discount / 100;
