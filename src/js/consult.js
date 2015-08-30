@@ -119,6 +119,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
         localStorageService.set('settingHandlingRate', zeroToNull(consult.settingHandlingRate));
         localStorageService.set('settingTaxRate', zeroToNull(consult.settingTaxRate));
         localStorageService.set('settingTaxShipping', consult.settingTaxShipping);
+        $location.path("/home");
     };
 
     consult.resetSettings = function () {
