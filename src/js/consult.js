@@ -109,6 +109,7 @@ app.controller('ConsultCalcController', ['$scope', '$location', 'localStorageSer
     consult.resetForm = function () {
         if (confirm('Reset this form?')) {
             init();
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
         }
     };
 
